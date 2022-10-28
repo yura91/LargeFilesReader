@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.R
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class FilesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(news: String?) {
         if (news != null) {
@@ -16,10 +16,10 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     companion object {
-        fun create(parent: ViewGroup): NewsViewHolder {
+        fun create(parent: ViewGroup): FilesViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_news, parent, false)
-            return NewsViewHolder(view)
+            return FilesViewHolder(view)
         }
     }
 }

@@ -5,15 +5,15 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-class NewsListAdapter
+class FilesListAdapter
     : PagedListAdapter<String, RecyclerView.ViewHolder>(NewsDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return NewsViewHolder.create(parent)
+        return FilesViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            (holder as NewsViewHolder).bind(getItem(position))
+            (holder as FilesViewHolder).bind(getItem(position))
     }
 
     companion object {

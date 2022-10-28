@@ -3,7 +3,7 @@ package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.data
 import android.content.Context
 import androidx.paging.PageKeyedDataSource
 
-class NewsDataSource(
+class FilesDataSource(
     private val context: Context
 ) : PageKeyedDataSource<Int, String>() {
 

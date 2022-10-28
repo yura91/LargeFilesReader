@@ -1,20 +1,19 @@
 package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.R
-import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.adapter.NewsListAdapter
-import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.viewModel.NewsListViewModel
-import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.viewModel.NewsViewModelFactory
+import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.adapter.FilesListAdapter
+import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.viewModel.FilesLoadViewModel
+import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.viewModel.FilesViewModelFactory
 import kotlinx.android.synthetic.main.activity_news_list.*
 
-class NewsListActivity : AppCompatActivity() {
+class FilesLoadActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: NewsListViewModel
-    private lateinit var newsListAdapter: NewsListAdapter
+    private lateinit var viewModel: FilesLoadViewModel
+    private lateinit var filesListAdapter: FilesListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,16 +27,16 @@ class NewsListActivity : AppCompatActivity() {
 //                recycler_view.scrollToPosition(0)
 //                scroll = false
             }
-        viewModel = ViewModelProvider(this, NewsViewModelFactory(this)).get(NewsListViewModel::class.java)
+        viewModel = ViewModelProvider(this, FilesViewModelFactory(this)).get(FilesLoadViewModel::class.java)
         initAdapter()
     }
 
     private fun initAdapter() {
-        newsListAdapter = NewsListAdapter()
-        recycler_view.adapter = newsListAdapter
+        filesListAdapter = FilesListAdapter()
+        recycler_view.adapter = filesListAdapter
         viewModel.newsList.observe(this,
             Observer {
-                newsListAdapter.submitList(it)
+                filesListAdapter.submitList(it)
             })
     }
 }
