@@ -1,5 +1,6 @@
 package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.viewModel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
@@ -8,40 +9,19 @@ import androidx.paging.PagedList
 import com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.data.*
 import io.reactivex.disposables.CompositeDisposable
 
-class NewsListViewModel : ViewModel() {
-
-    private val networkService = NetworkService.getService()
-    var newsList: LiveData<PagedList<News>>
-    private val compositeDisposable = CompositeDisposable()
-    private val pageSize = 5
+class NewsListViewModel(context : Context) : ViewModel() {
+    var newsList: LiveData<PagedList<String>>
+    private val pageSize = 1024
     private val newsDataSourceFactory: NewsDataSourceFactory =
-        NewsDataSourceFactory(compositeDisposable, networkService)
+        NewsDataSourceFactory(context)
 
     init {
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
-            .setInitialLoadSizeHint(pageSize * 2)
+            .setInitialLoadSizeHint(pageSize)
             .setEnablePlaceholders(false)
             .build()
         newsList = LivePagedListBuilder(newsDataSourceFactory, config).build()
     }
 
-
-    fun getState(): LiveData<State> = Transformations.switchMap(
-        newsDataSourceFactory.newsDataSourceLiveData,
-        NewsDataSource::state
-    )
-
-    fun retry() {
-        newsDataSourceFactory.newsDataSourceLiveData.value?.retry()
-    }
-
-    fun listIsEmpty(): Boolean {
-        return newsList.value?.isEmpty() ?: true
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
-    }
 }
