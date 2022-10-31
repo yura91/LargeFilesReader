@@ -20,13 +20,11 @@ class FilesLoadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_news_list)
         var scroll = false
         button.setOnClickListener {
-//            if(!scroll) {
                 recycler_view.scrollToPosition(recycler_view.adapter!!.itemCount - 1)
-//                scroll = true
-//            } /*else {
-//                recycler_view.scrollToPosition(0)
-//                scroll = false
             }
+        button2.setOnClickListener {
+            recycler_view.scrollToPosition(0)
+        }
         viewModel = ViewModelProvider(this, FilesViewModelFactory(this)).get(FilesLoadViewModel::class.java)
         initAdapter()
     }
