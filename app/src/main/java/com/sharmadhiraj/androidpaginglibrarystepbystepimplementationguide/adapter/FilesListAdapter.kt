@@ -1,12 +1,12 @@
 package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide.adapter
 
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 class FilesListAdapter
-    : PagedListAdapter<String, RecyclerView.ViewHolder>(NewsDiffCallback) {
+    : PagingDataAdapter<String, RecyclerView.ViewHolder>(FileBlocksDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return FilesViewHolder.create(parent)
@@ -17,7 +17,7 @@ class FilesListAdapter
     }
 
     companion object {
-        val NewsDiffCallback = object : DiffUtil.ItemCallback<String>() {
+        val FileBlocksDiffCallback = object : DiffUtil.ItemCallback<String>() {
             override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem === newItem
             }
